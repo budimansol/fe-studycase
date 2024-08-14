@@ -10,13 +10,16 @@ import {
   Text,
   Button,
   useToast,
+  Skeleton,
+  Box
 } from "@chakra-ui/react";
-import { useRouter, usePathname } from "next/navigation"; // Correct import for App Router
+import { useRouter, usePathname } from "next/navigation";
 
 export default function NoteDetail() {
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSkeleton, setShowSkeleton] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
   const id = pathname.split("/").pop(); // Extract id from the path
@@ -24,6 +27,9 @@ export default function NoteDetail() {
   const toast = useToast();
 
   useEffect(() => {
+    // Set a timeout to simulate delay
+    const timer = setTimeout(() => setShowSkeleton(false), 2000);
+
     if (id) {
       axios
         .get(`https://studycase-production.up.railway.app/notes/${id}`)
@@ -46,18 +52,28 @@ export default function NoteDetail() {
       setLoading(false);
       setError("Note ID not found");
     }
+
+    // Clean up the timer
+    return () => clearTimeout(timer);
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (showSkeleton && loading) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Skeleton width="full" height="full" />
+      </Box>
+    );
+  }
+  
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="flex flex-col mx-5">
-      <Card>
+    <Box display="flex" alignItems="center" justifyContent="center" height="100vh" mx="5">
+      <Card height="250px" width="600px">
         <CardHeader>
           <Heading size="lg">{note?.title || "No Title"}</Heading>
         </CardHeader>
-        <CardBody>
+        <CardBody margin="">
           <Text>{note?.body || "No content available"}</Text>
           <Text>
             Created At:{" "}
@@ -70,6 +86,6 @@ export default function NoteDetail() {
           Back
         </Button>
       </Card>
-    </div>
+    </Box>
   );
 }
