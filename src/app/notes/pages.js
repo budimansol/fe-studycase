@@ -16,6 +16,7 @@ import {
   AlertTitle,
   AlertDescription,
   useToast,
+  Box,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
@@ -95,17 +96,20 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col mx-5 my-10">
-      <div className="text-center w-full mb-10">
+    <Box className="flex flex-col min-h-screen overflow-hidden" bgGradient='linear(to-r, #522258, #D95F59)'>
+    <div className="w-full text-center mb-16 mt-10">
+      <Text fontSize="4xl" className="text-gray-200" as="b">Nama : Dzakky Budiman</Text>
+    </div>
+      <div className="w-full mb-10 mx-10">
         <Button
-          colorScheme="pink"
+          bg="#D95F59"
           variant="solid"
           onClick={() => handleOpenModal(null)}
         >
           Add Notes
         </Button>
       </div>
-      <div className="w-full">
+      <div className="w-full mx-10">
         {notes.length === 0 ? (
           <Alert status="warning" mb="4">
             <AlertIcon />
@@ -145,7 +149,7 @@ export default function Home() {
                   </Button>
                   <Button
                     ml="4"
-                    colorScheme="red"
+                    bg="#D95F59"
                     onClick={() => handleOpenConfirmModal(note)}
                   >
                     Delete
@@ -168,6 +172,6 @@ export default function Home() {
         onConfirm={handleDelete}
         note={noteToDelete}
       />
-    </div>
+    </Box>
   );
 }

@@ -68,7 +68,7 @@ export default function NoteDetail() {
   if (error) return <p>{error}</p>;
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" height="100vh" mx="5">
+    <Box display="flex" alignItems="center" justifyContent="center" className="w-full min-h-screen overflow-hidden" bgGradient='linear(to-r, #522258, #D95F59)'>
       <Card height="250px" width="600px">
         <CardHeader>
           <Heading size="lg">{note?.title || "No Title"}</Heading>
@@ -82,7 +82,7 @@ export default function NoteDetail() {
               : "Unknown Date"}
           </Text>
         </CardBody>
-        <Button onClick={() => router.back()} colorScheme="teal" mt="4">
+        <Button onClick={() => router.back()} bg="#D95F59" className="text-white" mt="4">
           Back
         </Button>
       </Card>
