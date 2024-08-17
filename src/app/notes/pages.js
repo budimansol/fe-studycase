@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("https://studycase-production.up.railway.app/notes")
+      .get("https://astonishing-reflection-production.up.railway.app/notes")
       .then((response) => {
         setNotes(response.data);
       })

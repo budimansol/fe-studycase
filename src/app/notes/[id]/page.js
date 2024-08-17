@@ -32,7 +32,7 @@ export default function NoteDetail() {
 
     if (id) {
       axios
-        .get(`https://studycase-production.up.railway.app/notes/${id}`)
+        .get(`https://astonishing-reflection-production.up.railway.app/notes/${id}`)
         .then((response) => {
           setNote(response.data);
           setLoading(false);
