@@ -35,8 +35,8 @@ const NoteModal = ({ isOpen, onClose, noteToEdit, onSave }) => {
   const handleSave = () => {
     const method = noteToEdit ? "put" : "post";
     const url = noteToEdit
-      ? `https://studycase-production.up.railway.app/notes/${noteToEdit.id}`
-      : `https://studycase-production.up.railway.app/notes/`;
+      ? `https://astonishing-reflection-production.up.railway.app/notes${noteToEdit.id}`
+      : `https://astonishing-reflection-production.up.railway.app/notes`;
 
     const noteData = {
       title,
